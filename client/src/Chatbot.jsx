@@ -8,7 +8,6 @@ const Chatbot = () => {
   const [userUrl, setUserUrl] = useState("");
   useEffect(() => {
     if (dealer_id) {
-      console.log(dealer_id);
       setDealerId(dealer_id);
     }
 
@@ -19,7 +18,7 @@ const Chatbot = () => {
 
     axios
       .get(
-        "http://ec2-52-91-0-180.compute-1.amazonaws.com/api/short_dealer/15/"
+        `http://ec2-52-91-0-180.compute-1.amazonaws.com/api/short_dealer/${dealer_id}/`
       )
       .then((res) => {
         setUserUrl(res.data.get_logo_url);

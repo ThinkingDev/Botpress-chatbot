@@ -2,6 +2,7 @@ const express = require('express');
 const bodyParser = require('body-parser');
 const path = require('path');
 const cors = require('cors');
+require('dotenv').config();
 
 const Chatbot = require('./models/Chatbot');
 const connectDB = require('./config/db');
@@ -50,6 +51,7 @@ app.get('/api/chatbot/get-id', async (req, res) => {
 
 // Serve static assets in production
 if (process.env.NODE_ENV === 'production') {
+  console.log('PRODUCTION => ')
   // Set static folder
   app.use(express.static('client/dist'));
 
