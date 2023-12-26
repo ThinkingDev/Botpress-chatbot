@@ -10,12 +10,10 @@ const Chatbot = () => {
     if (dealer_id) {
       setDealerId(dealer_id);
     }
-
     const script = document.createElement("script");
     script.src = "https://cdn.botpress.cloud/webchat/v0/inject.js";
     script.async = true;
     document.body.appendChild(script);
-
     axios
       .get(
         `http://ec2-52-91-0-180.compute-1.amazonaws.com/api/short_dealer/${dealer_id}/`
@@ -38,6 +36,7 @@ const Chatbot = () => {
           <script>
             window.botpressWebChat.init({
               'composerPlaceholder': 'Chat with bot',
+              'showTimestamp': true,
               'botConversationDescription': 'This chatbot was built for creating dealer applications',
               'botName': 'Automation Chatbot',
               'botId': '3e76f875-4aa7-495f-9ef0-701c8a2850b3',
@@ -54,7 +53,7 @@ const Chatbot = () => {
               'disableAnimations': true,
               'closeOnEscape': false,
               'useSessionStorage': true,
-              'enableConversationDeletion': true,
+              // 'enableConversationDeletion': true,
               'showConversationsButton': false,
               'enableTranscriptDownload': false,
               'stylesheet': 'https://webchat-styler-css.botpress.app/prod/code/5dd8f430-7e1c-4341-b4a8-526a4bef3563/v96217/style.css'
