@@ -1,16 +1,15 @@
-import { useEffect, useState } from 'react';
-import { useParams } from 'react-router-dom';
-import { setDealerId } from './actions/chatbot';
-import axios from 'axios';
+import { useEffect, useState } from "react";
+import { useParams } from "react-router-dom";
+import { setDealerId } from "./actions/chatbot";
+import axios from "axios";
 const Chatbot = () => {
   const { dealer_id } = useParams();
 
-  const [userUrl, setUserUrl] = useState('');
+  const [userUrl, setUserUrl] = useState("");
   useEffect(() => {
     if (dealer_id) {
       setDealerId(dealer_id);
     }
-
     const script = document.createElement("script");
     script.src = "https://cdn.botpress.cloud/webchat/v0/inject.js";
     script.async = true;
@@ -25,13 +24,13 @@ const Chatbot = () => {
   }, [dealer_id]);
 
   return (
-    <div className='w-full h-screen flex-col flex justify-items-center items-center my-9'>
-      <div className='w-40 h-20 bg-no-repeat relative'>
-        <img className='baner' src={userUrl} alt='baner' />
+    <div className="w-full h-screen flex-col flex justify-items-center items-center my-9">
+      <div className="w-40 h-20 bg-no-repeat relative">
+        <img className="baner" src={userUrl} alt="baner" />
       </div>
-      <div className='w-1/2 h-4/5'>
+      <div className="w-1/2 h-4/5">
         <iframe
-          src='border: none;'
+          src="border: none;"
           srcDoc="<body>
           <script src='https://cdn.botpress.cloud/webchat/v0/inject.js'></script>
           <script>
@@ -59,18 +58,11 @@ const Chatbot = () => {
               'enableTranscriptDownload': false,
               'stylesheet': 'https://webchat-styler-css.botpress.app/prod/code/5dd8f430-7e1c-4341-b4a8-526a4bef3563/v96217/style.css'
             });
-            // Listen to the 'onBeforeSend' event
-            window.botpressWebChat.onEvent('onBeforeSend', (payload) => {
-              console.log('Message before sending:', payload);
-            
-              // Do something with the payload
-              // You can even modify the payload here if necessary
-            });
             window.botpressWebChat.onEvent(function () { window.botpressWebChat.sendEvent({ type: 'show' }) }, ['LIFECYCLE.LOADED']);
           </script>
         </body>"
-          width='100%'
-          height='100%'
+          width="100%"
+          height="100%"
         />
       </div>
     </div>
